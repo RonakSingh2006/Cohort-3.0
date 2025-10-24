@@ -1,0 +1,2 @@
+I am File A
+It have No DATA
