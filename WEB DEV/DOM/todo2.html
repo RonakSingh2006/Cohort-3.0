@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="task-box">
+
+  </div>
+  <input type="text" name="todo-input" id="todo-input" placeholder="Enter Todo Task">
+  <button id="btn">Add</button>
+
+  <script>
+    let add = document.querySelector("#btn");
+    add.addEventListener('click',AddTask);
+
+    let input = document.querySelector("#todo-input");
+
+
+    let id = 0;
+    let todo = [];
+
+    let taskBox = document.querySelector(".task-box");
+    function AddTask(){
+      todo.push({
+        val : input.value,
+        taskId : id++
+      });
+      input.value = "";
+
+      renderTask();
+    }
+
+    function deleteTask(taskId){
+      todo = todo.filter((e)=>e.taskId != taskId);
+      renderTask();
+    }
+
+    function renderTask(){
+      taskBox.innerHTML = "";
+
+      todo.forEach((e)=>{
+        let newTask = document.createElement("div");
+        newTask.id = e.taskId
+        newTask.innerHTML = 
+        `<span>${e.val}</span>
+          <button onClick = "deleteTask(${e.taskId})" >Delete</button>
+        `;
+        taskBox.appendChild(newTask);
+      })
+    }
+
+
+  </script>
+</body>
+</html>
