@@ -2,8 +2,15 @@ let express = require('express');
 
 const app = express();
 
+function calculateSum(n){
+  return (n*(n+1))/2;
+}
+
 app.get("/",(req,res)=>{
-  res.send("Hello World");
+  let n = Number(req.query.n);
+  res.statusCode = 500;
+  res.send(calculateSum(n));
 })
 
-app.listen(8080);
+
+app.listen(3000);
