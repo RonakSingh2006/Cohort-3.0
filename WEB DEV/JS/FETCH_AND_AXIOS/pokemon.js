@@ -16,28 +16,30 @@ const generateRandomPokemon = (imgURL , name)=>{
   imgElement.src = imgURL;
 
   imgElement.width = 200;
-
+  
   const nameElement = document.createElement("h1");
   nameElement.textContent = name;
-
-  console.log(imgElement);
-  console.log(nameElement);
 
   resultBox.innerHTML = "";
   resultBox.appendChild(imgElement);
   resultBox.appendChild(nameElement);
 }
 
+
 const btn = document.querySelector("#click");
 
 const getData = async ()=>{
   let randomNum = generateRandom();
-
-  let url = getURL(randomNum);
-
-  let res = await fetch(url);
-  let data = await res.json();
   
+  let url = getURL(randomNum);
+  
+  // let res = await fetch(url);
+  // let data = await res.json();
+  
+  // Using AXIOS
+
+  let res = await axios.get(url);
+  let data = res.data;
 
   let img = data.sprites.front_default;
   let name = data.name;
