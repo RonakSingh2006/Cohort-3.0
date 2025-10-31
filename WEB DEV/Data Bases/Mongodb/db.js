@@ -6,7 +6,7 @@ const ObjectId = mongoose.ObjectId;
 mongoose.connect("mongodb+srv://ronaksingh201106_db_user:ucGIxAiYUoyvl4iT@cluster0.8cbmfgr.mongodb.net/todo-app-database")
 
 const User = new Schema({
-  email : String,
+  email : {type : String , unique : true},
   name : String,
   password : String
 })

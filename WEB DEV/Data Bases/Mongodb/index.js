@@ -12,19 +12,17 @@ app.use(express.json());
 app.post("/signup", async (req,res)=>{
 
   let {email,name,password} = req.body;
-  
-  let user = await UserModel.findOne({email})
 
-  if(user){
-    return res.status(400).send("User already exsists");
+  try{
+    let hashedPassword = await bcrypt.hash(password,5);
+  
+    await UserModel.create({email,name,password : hashedPassword});
+
+    res.send("Sucessfully Signed Up");
   }
-
-  let hashedPassword = await bcrypt.hash(password,5);
-  console.log(hashedPassword);
-  
-  await UserModel.create({email,name,password : hashedPassword});
-
-  res.send("Sucessfully Signed Up");
+  catch(e){
+    res.status(400).send("User already exsits");
+  }
 
 })
 
