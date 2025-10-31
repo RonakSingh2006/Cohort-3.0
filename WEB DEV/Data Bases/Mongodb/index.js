@@ -2,6 +2,7 @@ const express = require('express');
 const {UserModel , TodoModel} = require("./db");
 const jwt = require("jsonwebtoken");
 const bcrypt = require('bcrypt');
+const {z} = require('zod');
 
 const app =  express();
 
@@ -11,7 +12,19 @@ app.use(express.json());
 
 app.post("/signup", async (req,res)=>{
 
-  let {email,name,password} = req.body;
+  let requiredBody = z.object({
+    email : z.email().min(5).max(50),
+    password : z.string().min(6).max(20),
+    name : z.string().min(3).max(50)
+  })
+
+  let parsedData = requiredBody.safeParse(req.body);
+
+  if(!parsedData.success){
+    return res.status(400).send(JSON.parse(parsedData.error));
+  }
+
+  let {email,name,password} = parsedData.data;
 
   try{
     let hashedPassword = await bcrypt.hash(password,5);
@@ -28,7 +41,18 @@ app.post("/signup", async (req,res)=>{
 
 app.post("/signin", async (req,res)=>{
 
-  let {email,password} = req.body;
+  let requiredBody = z.object({
+    email : z.email(),
+    password : z.string()
+  })
+
+  let parsedData = requiredBody.safeParse(req.body);
+
+  if(!parsedData.success){
+    return res.status(400).send(JSON.parse(parsedData.error));
+  }
+
+  let {email,password} = parsedData.data;
 
   let user = await UserModel.findOne({email})
   
@@ -63,7 +87,6 @@ async function auth(req,res,next){
 
     if(user){
       req.userId = decoded.id;
-
       next();
     }
     else{
