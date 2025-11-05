@@ -1,0 +1,13 @@
+.done{
+  background-color: red;
+}
+
+#task-box{
+  border : 2px solid black;
+  width: 50%;
+  margin: 10px;
+}
+
+h3{
+  text-align: center;
+}
