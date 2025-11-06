@@ -1,14 +1,45 @@
-import { useState,useEffect} from "react";
+import {useEffect,useState} from "react";
 
 
 function Clock(){
 
-  const [count,setCount] = useState(0);
+  const [visible , setVisible] = useState(true);
 
   useEffect(()=>{
-    setInterval(()=>{
-      setCount(count=>count+1)
-    },1000)
+    let interval = setInterval(()=>{
+      setVisible(c=> !c);
+    },5000)
+
+    return function(){
+      clearInterval(interval);
+    }
+  },[])
+
+  return <>
+    {visible && <ClockRender/>}
+  </>
+
+}
+
+
+function ClockRender(){
+
+  const [count,setCount] = useState(0);
+  
+  // Mount
+  useEffect(()=>{
+
+    console.log("mount");
+    let clock = setInterval(()=>{
+      setCount(c=>c+1);
+    },1000);
+
+    // unmount
+    return function(){
+      console.log("Unmount");
+      clearInterval(clock);
+    }
+
   },[]);
 
   return <>
