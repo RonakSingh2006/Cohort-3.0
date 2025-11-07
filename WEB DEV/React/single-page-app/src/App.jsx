@@ -9,11 +9,11 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout/>}>
+        <Route path="/program" element={<Layout/>}>
 
-          <Route path = "/" element = {<Home/>} />
-          <Route path = "/java" element = {<Language lang={"Java"}/>} />
-          <Route path = "/java-script" element = {<Language lang={"Java Script"}/>} />
+          <Route path = "/program/" element = {<Home/>} />
+          <Route path = "/program/java" element = {<Language lang={"Java"}/>} />
+          <Route path = "/program/java-script" element = {<Language lang={"Java Script"}/>} />
           <Route path = "*" element = {<Error/>} />
 
         </Route>
