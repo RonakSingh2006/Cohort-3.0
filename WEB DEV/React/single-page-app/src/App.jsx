@@ -3,6 +3,7 @@ import Home from "./components/Home"
 import Language from "./components/Language"
 import Layout from "./components/Layout"
 import Error from "./components/Error"
+import Clock from "./components/Clock"
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
           <Route path = "*" element = {<Error/>} />
 
         </Route>
+        <Route path = "/clock" element = {<Clock/>}/>
       </Routes>
     </BrowserRouter>
   )
