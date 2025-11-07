@@ -1,15 +1,14 @@
-import { useState } from "react"
 import Circuit from "./Components/Circuit";
 
-import { BulbProvider } from "./store/BulbStore";
+import BulbProvider from "./store/BulbStore/BulbProvider";
 
 function App() {
 
-  const [on , toggle] = useState(false);
-
-  return <BulbProvider value = {{on,toggle}}>
-    <Circuit/>
-  </BulbProvider>
+  return <>
+    <BulbProvider>
+      <Circuit/>
+    </BulbProvider>
+  </>
 
 }
 export default App
