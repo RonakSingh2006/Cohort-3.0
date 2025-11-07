@@ -1,4 +1,9 @@
-function Toggle({toggle}){
+import { useContext } from "react";
+import BulbContext from "../store/BulbStore";
+
+function Toggle(){
+
+  let {toggle} = useContext(BulbContext)
 
   return <>
     <button onClick={()=>{

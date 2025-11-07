@@ -1,10 +1,10 @@
 import Bulb from "./Bulb"
 import Toggle from "./Toggle"
 
-function Circuit({on,toggle}){
+function Circuit(){
   return <>
-    <Bulb on={on}/>
-    <Toggle toggle={toggle}/>
+    <Bulb/>
+    <Toggle/>
   </>
 }
 
