@@ -1,17 +1,12 @@
-import { Outlet , Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import Header from "./Header";
+
 
 function Layout(){
-  return <>
-    {/* header  */}
-    
-    <Link to="/">Home | </Link>
-    <Link to="java">Java | </Link>
-    <Link to="java-script">JS</Link>
-
+  return <>   
+  
+    <Header/>
     <Outlet/>
-
-
-    {/* here we can add footer  */}
 
   </>
 }
