@@ -20,7 +20,7 @@ function App() {
     console.log(ref.current.value);
   }
 
-  const debounceBackend = useDebounce(backend,3);
+  const debounceBackend = useDebounce(backend,200);
   
 
   return <>
