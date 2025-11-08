@@ -6,10 +6,7 @@ function useDebounce(fn , debounceTime ){
   return function(){
     clearTimeout(ref.current);
 
-     ref.current = setTimeout(
-      ()=>{
-        fn();
-      },debounceTime*1000);
+    ref.current = setTimeout(fn,debounceTime*1000);
   }
 }
 
