@@ -18,6 +18,18 @@ function useFetch(url){
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[url]);
 
+
+  // refetch after every 10s
+  useEffect(()=>{
+    let timer = setInterval(()=>{
+      getData()
+    },10000);
+
+    return function(){
+      clearInterval(timer);
+    }
+  })
+
   return [data,loading];
 }
 
