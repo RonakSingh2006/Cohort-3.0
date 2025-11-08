@@ -3,13 +3,13 @@ import useFetch from "./hooks/useFetch";
 
 function App() {
   const [count,incCount] = useCounter(1);
-  const [data] = useFetch(`https://dummyjson.com/products/${count}`);
+  const [data,loading] = useFetch(`https://dummyjson.com/products/${count}`);
 
   return <>
     <button onClick={incCount}>Count : {count}</button>
 
     <div>
-      fetched data is : {JSON.stringify(data)}
+      {loading ? <h1>Loading....</h1> : <p>fetched data is : {JSON.stringify(data)}</p>}
     </div>
   </>
 }
