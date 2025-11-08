@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-function useCounter(){
-  const [count,setCount] = useState(0);
+function useCounter(start){
+  const [count,setCount] = useState(start);
 
   function incCount(){
     setCount(prev => prev + 1);

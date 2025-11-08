@@ -1,12 +1,16 @@
 import useCounter from "./hooks/useCounter"
+import useFetch from "./hooks/useFetch";
 
 function App() {
-  const [count,incCount] = useCounter();
+  const [count,incCount] = useCounter(1);
+  const [data] = useFetch(`https://dummyjson.com/products/${count}`);
 
   return <>
-    <div>{count}</div>
+    <button onClick={incCount}>Count : {count}</button>
 
-    <button onClick={incCount}>Click</button>
+    <div>
+      fetched data is : {JSON.stringify(data)}
+    </div>
   </>
 }
 
