@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function useFetch(url){
+function useFetch(url,refetchTime){
   const [data,setData] = useState({});
   const [loading , setLoading] = useState(false);
 
@@ -23,7 +23,7 @@ function useFetch(url){
   useEffect(()=>{
     let timer = setInterval(()=>{
       getData()
-    },10000);
+    },refetchTime*1000);
 
     return function(){
       clearInterval(timer);
