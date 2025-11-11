@@ -5,9 +5,11 @@ export const todosAtomFamily = atomFamily({
   key: 'todosAtomFamily',
   default: selectorFamily({
     key: "todoSelectorFamily",
-    get: (id) => async ({get}) => {
-      const res = await axios.get(`https://sum-server.100xdevs.com/todo?id=${id}`);
-      return res.data.todo;
+    get: (id) => {
+      return async () => {
+        const res = await axios.get(`https://dummyjson.com/todos/${id}`);
+        return res.data.todo;
+      }
     },
   })
 });
