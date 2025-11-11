@@ -1,7 +1,8 @@
+// Learned about selector family it is used in atom family white getting dynamic data , like we async-queries we use selector
+
 import { RecoilRoot, useRecoilValue} from 'recoil';
 import { todosAtomFamily } from './atoms';
 import { Suspense } from 'react';
-
 function App() {
   return <RecoilRoot>
     <Suspense fallback={<h1>Loading...</h1>}>
