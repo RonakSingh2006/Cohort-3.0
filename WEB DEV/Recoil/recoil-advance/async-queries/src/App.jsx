@@ -1,32 +1,24 @@
-import { RecoilRoot, useRecoilState, useRecoilValue } from 'recoil'
+import { RecoilRoot, useRecoilValue } from 'recoil'
 import { notifications, totalNotificationSelector } from './atoms'
-import { useEffect } from 'react'
-import axios from 'axios'
+import { Suspense } from 'react';
 
 function App() {
   return <RecoilRoot>
-    <MainApp />
+    <Suspense fallback={<h1>Loading...</h1>}>
+      <MainApp />
+    </Suspense>
   </RecoilRoot>
 }
 
 function MainApp() {
-  const [networkCount, setNetworkCount] = useRecoilState(notifications)
+  const networkCount = useRecoilValue(notifications);
   const totalNotificationCount = useRecoilValue(totalNotificationSelector);
-
-  useEffect(() => {
-    // fetch
-    axios.get("http://127.0.0.1:3000")
-      .then(res => {
-        setNetworkCount(res.data)
-      })
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
 
   return (
     <>
       <button>Home</button>
       
-      <button>My network ({networkCount.network >= 100 ? "99+" : networkCount.networks})</button>
+      <button>My network ({networkCount.network >= 100 ? "99+" : networkCount.network})</button>
       <button>Jobs ({networkCount.jobs})</button>
       <button>Messaging ({networkCount.messaging})</button>
       <button>Notifications ({networkCount.notifications})</button>

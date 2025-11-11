@@ -9,7 +9,6 @@ function RadomNum(){
   return Math.floor(Math.random()*1000) + 1; 
 }
 
-
 app.get("/",(req,res)=>{  
   res.json({
       network: RadomNum(), 
