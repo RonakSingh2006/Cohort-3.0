@@ -2,7 +2,7 @@ import { IoCalendarNumberOutline } from "react-icons/io5";
 import { FaAngleDown,FaArrowRight , FaArrowLeft , FaCaretSquareRight } from "react-icons/fa";
 
 function Schedule(){
-  return <div className="bg-gray-700 w-full h-4/6 rounded-xl">
+  return <div className="dark:bg-gray-700 bg-white w-full h-4/6 rounded-xl">
     <Head/>
     <Task time={"11:30 AM"} task={"UX Webinar"}></Task>
     <Task time={"12:30 PM"} task={"My First Webinar"}></Task>
@@ -29,7 +29,7 @@ function Head(){
 }
 
 function Task({time,task}){
-  return <div className="flex bg-gray-800 rounded-md p-1 my-5 mx-2 gap-2 text-gray-300">
+  return <div className="flex dark:bg-gray-800 bg-gray-400 rounded-md p-1 my-5 mx-2 gap-2 text-gray-300">
     <div className="w-1/6">
       <div className="text-xl">{time}</div>
       <div className="text-xs">{time}</div>

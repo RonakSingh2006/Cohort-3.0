@@ -4,7 +4,7 @@ import { FaDoorOpen } from "react-icons/fa";
 
 
 function Control(){
-  return <div className="flex flex-wrap gap-3 justify-evenly w-5/6 md:h-3/6 h-5/6 bg-gray-700 rounded-md">
+  return <div className="flex flex-wrap gap-3 justify-evenly w-5/6 md:h-3/6 h-5/6 dark:bg-gray-700 bg-white shadow-md rounded-md">
     <Icon title={"Schedule Webinar"}>
       <RiCalendarScheduleFill size={50}/>
     </Icon>
@@ -19,7 +19,7 @@ function Control(){
 
 function Icon({children , title}){
   return <div className=" w-32 h-32 flex flex-col items-center justify-center gap-2">
-    <div className="bg-cyan-700 w-16 h-16 flex justify-center items-center rounded-md">
+    <div className="dark:bg-cyan-700 bg-cyan-100 text-cyan-800 dark:text-white w-16 h-16 flex justify-center items-center rounded-md">
       {children}
     </div>
     <div className="text-sm font-semibold">

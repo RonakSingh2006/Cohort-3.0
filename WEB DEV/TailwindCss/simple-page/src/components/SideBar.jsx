@@ -7,7 +7,7 @@ import { CiSettings } from "react-icons/ci";
 
 
 function SideBar(){
-  return <div className="md:w-96 w-12 h-screen bg-gray-900 transition-all duration-500 delay-75 ease-in-out ">
+  return <div className="md:w-96 w-12 h-screen dark:bg-gray-900 bg-gray-100 border-r border-gray-200 transition-all duration-500 delay-75 ease-in-out ">
     <Head/>
     <Items/>
   </div>
@@ -15,7 +15,7 @@ function SideBar(){
 
 function Head(){
   return <div className="h-20 flex justify-around md:mx-7 my-10 items-center" >
-    <button className="bg-blue-800 text-white px-8 py-2 rounded-md  hidden md:block">Welcome</button>
+    <button className="dark:bg-blue-800 bg-blue-600 text-white px-8 py-2 rounded-md  hidden md:block">Welcome</button>
     
     <ProfilePhoto url="https://wallpapers.com/images/hd/funny-discord-profile-pictures-hu79xvfemqiojlhd.jpg" size={"45px"}/>
   </div>
@@ -44,7 +44,7 @@ function Items(){
 }
 
 function Item({title,children}){
-  return <div className="bg-gray-500 flex md:m-4 m-1 md:p-3 p-1 md:w-64 justify-between rounded-md items-center">
+  return <div className="dark:bg-gray-500 text-gray-700 bg-gray-200 flex md:m-4 m-1 md:p-3 p-1 md:w-64 justify-between rounded-md items-center">
     <div className="hidden md:block">{title}</div>
     <div>{children}</div>
   </div>

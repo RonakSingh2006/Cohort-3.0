@@ -12,16 +12,16 @@ function Main({url}){
 
     <div className="grid grid-cols-10 flex-1">
 
-      <div className="col-span-2 md:block hidden bg-gray-400 relative">
+      <div className="col-span-2 md:block hidden dark:bg-gray-400 bg-gray-50 relative">
         <Profile url={url}/>
       </div>
 
-      <div className="md:col-span-5 col-span-10 bg-gray-400">
+      <div className="md:col-span-5 col-span-10 dark:bg-gray-400 bg-white">
         <Greet name={"Turtle"}/>
         <Schedule/>
       </div>
 
-      <div className="md:col-span-3 col-span-10 bg-gray-400 flex justify-center items-center">
+      <div className="md:col-span-3 col-span-10 dark:bg-gray-400 bg-gray-50 flex justify-center items-center">
         <Control/>
       </div>
 
