@@ -15,6 +15,22 @@ function delay(fn : ()=>void){
   setTimeout(fn,1000);
 }
 
-delay(()=>{
-  console.log("Hello");
-})
+interface Person {
+  name : string,
+  age : number,
+  addres : string
+}
+
+function complexGreet(person : Person){
+  console.log(person.name + person.age + person.addres);
+}
+
+
+let ronak: Person = {
+  name : "Ronak",
+  age : 19,
+  addres : "29 nehrupark society"
+}
+
+
+complexGreet(ronak)
