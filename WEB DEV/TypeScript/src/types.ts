@@ -21,7 +21,7 @@ type BadUser = {
 // now the intersion will the name , gift and ip 
 
 
-type User = GoodUser | BadUser;
+type User = GoodUser & BadUser;
 
 
 let ronak:User = {
@@ -30,19 +30,14 @@ let ronak:User = {
   ip : "127.0.0.1"
 }
 
-let dhoni:User = {
-  name : "Ronak",
-  gift : "Nice Gift"
-}
-
-console.log(ronak,dhoni);
+console.log(ronak);
 
 
 
 // Union
 // It is simple wwe just take the union of both varaibles
 
-type Hacker = GoodUser & BadUser;
+type Hacker = GoodUser | BadUser;
 
 let rohit:Hacker = {
   name : "Ronak",
@@ -50,6 +45,10 @@ let rohit:Hacker = {
   ip : "127.0.0.1"
 }
 
+let dhoni:Hacker = {
+  name : "Ronak",
+  gift : "Nice Gift"
+}
 
-console.log(rohit);
+console.log(dhoni,rohit);
 
