@@ -75,3 +75,41 @@ class Human implements People{
 let nh:Human = new Human("Ronak",19);
 
 console.log(nh.greet())
+
+
+
+abstract class Vehical{
+  model : string;
+  year : number;
+
+  constructor(model : string , year : number){
+    this.model = model;
+    this.year = year;
+  }
+
+  abstract start() : void;
+
+  horn(){
+    return "Horn Horn"
+  }
+
+}
+
+
+// The absract method can have a default implemented method
+
+
+class Hundai extends Vehical {
+  constructor(){
+    super("Hundai",1956);
+  }
+
+  start(){
+    console.log("Starting Vehical");
+  }
+}
+
+
+new Hundai().start();
+
+
