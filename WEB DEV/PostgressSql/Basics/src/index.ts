@@ -36,4 +36,48 @@ app.post("/user",async (req,res)=>{
   res.send("user added");
 })
 
+// Transactions
+
+app.post("/createAccount", async (req,res)=>{
+  const {username,userId,gender,accountId} = req.body;
+
+  const customerQuery = 'INSERT INTO Customer VALUES ($1, $2, $3);'
+  const accountQuery = 'INSERT INTO Account VALUES ($1, $2)'
+
+  await pgClient.query('BEGIN;');
+  await pgClient.query(customerQuery,[username,userId,gender]);
+
+  await new Promise((res) => setTimeout(res,1000*100));
+
+  await pgClient.query(accountQuery,[accountId,userId]);
+  await pgClient.query('COMMIT;');
+
+  res.send("Done");
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 app.listen(3000);
