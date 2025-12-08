@@ -1,25 +1,28 @@
 import { prisma } from './lib/prisma.js'
 
-async function main() {
-  // await prisma.user.create({
-  //   data : {
-  //     usename : "RandomAccount",
-  //     password : "Random@3214",
-  //     age : 19
-  //   }
-  // })
+import express from 'express'
 
+const app = express();
 
+app.get("/user", async (req,res)=>{
+  const users = await prisma.user.findMany();
+
+  res.send(users);
+})
+
+app.get("/user/:id" , async (req,res)=>{
   const user = await prisma.user.findFirst({
     where : {
-      id : 1
+      id : parseInt(req.params.id)
     },
-    include : {
-      todos : true
-    } 
+    select : {
+      todos : true,
+      usename : true
+    }
   })
 
-  console.log(user);
-}
+  res.send(user);
+})
 
-main();
+
+app.listen(3000);
