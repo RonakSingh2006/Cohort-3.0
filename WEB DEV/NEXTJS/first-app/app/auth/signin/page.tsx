@@ -1,12 +1,15 @@
 'use client'
 
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import { useRef } from "react";
 
 export default function SignIn(){
 
   const userNameRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
+
+  const router = useRouter();
 
   async function SignIn(){
     const username = userNameRef.current?.value;
@@ -25,6 +28,8 @@ export default function SignIn(){
     if(passwordRef.current){
       passwordRef.current.value = "";
     }
+
+    router.push("/");
   }
 
   return <div className="flex justify-center items-center mt-20">
