@@ -29,7 +29,7 @@ export default function SignUp(){
       passwordRef.current.value = "";
     }
 
-    router.push("/auth/signin");
+    router.push("/signin");
   }
 
   return <div className="flex justify-center items-center mt-20">
