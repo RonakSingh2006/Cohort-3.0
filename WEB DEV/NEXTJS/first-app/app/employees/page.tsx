@@ -1,7 +1,7 @@
 import axios from "axios"
 
 async function getEmployees() {
-  const response = await axios.get('https://dummy.restapiexample.com/api/v1/employees');
+  const response = await axios.get('http://localhost:3000/api/v1/employees');
   console.log(response.data);
   return response.data;
 }
