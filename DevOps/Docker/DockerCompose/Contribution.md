@@ -25,4 +25,4 @@
 
 ## Docker Compose Instalation
 - Install Docker , docker-compose
-- Run  `docker-compose up`
+- Run  `docker compose up`
