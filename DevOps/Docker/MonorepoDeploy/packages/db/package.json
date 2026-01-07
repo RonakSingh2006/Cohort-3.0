@@ -4,16 +4,14 @@
   "type": "module",
   "private": true,
   "devDependencies": {
-    "@types/bun": "latest"
-  },
-  "scripts": {
-    "build" : "tsc -b"
+    "@types/bun": "latest",
+    "@types/node": "^25.0.3",
+    "@types/pg": "^8.16.0",
+    "install": "^0.13.0",
+    "prisma": "^7.2.0"
   },
   "exports" : {
-    "./client" : {
-      "default" : "./dist/lib/prisma.js",
-      "types" : "./dist/lib/prisma.d.ts"
-    }
+    "./client" : "./index.ts"
   },
   "peerDependencies": {
     "typescript": "^5"
@@ -21,10 +19,7 @@
   "dependencies": {
     "@prisma/adapter-pg": "^7.2.0",
     "@prisma/client": "^7.2.0",
-    "@types/node": "^25.0.3",
-    "@types/pg": "^8.16.0",
     "dotenv": "^17.2.3",
-    "pg": "^8.16.3",
-    "prisma": "^7.2.0"
+    "pg": "^8.16.3"
   }
 }

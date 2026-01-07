@@ -20,19 +20,29 @@ export type TodoModel = runtime.Types.Result.DefaultSelection<Prisma.$TodoPayloa
 
 export type AggregateTodo = {
   _count: TodoCountAggregateOutputType | null
+  _avg: TodoAvgAggregateOutputType | null
+  _sum: TodoSumAggregateOutputType | null
   _min: TodoMinAggregateOutputType | null
   _max: TodoMaxAggregateOutputType | null
 }
 
+export type TodoAvgAggregateOutputType = {
+  id: number | null
+}
+
+export type TodoSumAggregateOutputType = {
+  id: number | null
+}
+
 export type TodoMinAggregateOutputType = {
-  id: string | null
+  id: number | null
   task: string | null
   done: boolean | null
   userId: string | null
 }
 
 export type TodoMaxAggregateOutputType = {
-  id: string | null
+  id: number | null
   task: string | null
   done: boolean | null
   userId: string | null
@@ -46,6 +56,14 @@ export type TodoCountAggregateOutputType = {
   _all: number
 }
 
+
+export type TodoAvgAggregateInputType = {
+  id?: true
+}
+
+export type TodoSumAggregateInputType = {
+  id?: true
+}
 
 export type TodoMinAggregateInputType = {
   id?: true
@@ -107,6 +125,18 @@ export type TodoAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: TodoAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: TodoSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: TodoMinAggregateInputType
@@ -137,16 +167,20 @@ export type TodoGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
   take?: number
   skip?: number
   _count?: TodoCountAggregateInputType | true
+  _avg?: TodoAvgAggregateInputType
+  _sum?: TodoSumAggregateInputType
   _min?: TodoMinAggregateInputType
   _max?: TodoMaxAggregateInputType
 }
 
 export type TodoGroupByOutputType = {
-  id: string
+  id: number
   task: string
   done: boolean
   userId: string
   _count: TodoCountAggregateOutputType | null
+  _avg: TodoAvgAggregateOutputType | null
+  _sum: TodoSumAggregateOutputType | null
   _min: TodoMinAggregateOutputType | null
   _max: TodoMaxAggregateOutputType | null
 }
@@ -170,7 +204,7 @@ export type TodoWhereInput = {
   AND?: Prisma.TodoWhereInput | Prisma.TodoWhereInput[]
   OR?: Prisma.TodoWhereInput[]
   NOT?: Prisma.TodoWhereInput | Prisma.TodoWhereInput[]
-  id?: Prisma.StringFilter<"Todo"> | string
+  id?: Prisma.IntFilter<"Todo"> | number
   task?: Prisma.StringFilter<"Todo"> | string
   done?: Prisma.BoolFilter<"Todo"> | boolean
   userId?: Prisma.StringFilter<"Todo"> | string
@@ -186,7 +220,7 @@ export type TodoOrderByWithRelationInput = {
 }
 
 export type TodoWhereUniqueInput = Prisma.AtLeast<{
-  id?: string
+  id?: number
   AND?: Prisma.TodoWhereInput | Prisma.TodoWhereInput[]
   OR?: Prisma.TodoWhereInput[]
   NOT?: Prisma.TodoWhereInput | Prisma.TodoWhereInput[]
@@ -202,63 +236,62 @@ export type TodoOrderByWithAggregationInput = {
   done?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   _count?: Prisma.TodoCountOrderByAggregateInput
+  _avg?: Prisma.TodoAvgOrderByAggregateInput
   _max?: Prisma.TodoMaxOrderByAggregateInput
   _min?: Prisma.TodoMinOrderByAggregateInput
+  _sum?: Prisma.TodoSumOrderByAggregateInput
 }
 
 export type TodoScalarWhereWithAggregatesInput = {
   AND?: Prisma.TodoScalarWhereWithAggregatesInput | Prisma.TodoScalarWhereWithAggregatesInput[]
   OR?: Prisma.TodoScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TodoScalarWhereWithAggregatesInput | Prisma.TodoScalarWhereWithAggregatesInput[]
-  id?: Prisma.StringWithAggregatesFilter<"Todo"> | string
+  id?: Prisma.IntWithAggregatesFilter<"Todo"> | number
   task?: Prisma.StringWithAggregatesFilter<"Todo"> | string
   done?: Prisma.BoolWithAggregatesFilter<"Todo"> | boolean
   userId?: Prisma.StringWithAggregatesFilter<"Todo"> | string
 }
 
 export type TodoCreateInput = {
-  id?: string
   task: string
   done: boolean
   user: Prisma.UserCreateNestedOneWithoutTodosInput
 }
 
 export type TodoUncheckedCreateInput = {
-  id?: string
+  id?: number
   task: string
   done: boolean
   userId: string
 }
 
 export type TodoUpdateInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
   task?: Prisma.StringFieldUpdateOperationsInput | string
   done?: Prisma.BoolFieldUpdateOperationsInput | boolean
   user?: Prisma.UserUpdateOneRequiredWithoutTodosNestedInput
 }
 
 export type TodoUncheckedUpdateInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   task?: Prisma.StringFieldUpdateOperationsInput | string
   done?: Prisma.BoolFieldUpdateOperationsInput | boolean
   userId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type TodoCreateManyInput = {
-  id?: string
+  id?: number
   task: string
   done: boolean
   userId: string
 }
 
 export type TodoUpdateManyMutationInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
   task?: Prisma.StringFieldUpdateOperationsInput | string
   done?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type TodoUncheckedUpdateManyInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   task?: Prisma.StringFieldUpdateOperationsInput | string
   done?: Prisma.BoolFieldUpdateOperationsInput | boolean
   userId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -281,6 +314,10 @@ export type TodoCountOrderByAggregateInput = {
   userId?: Prisma.SortOrder
 }
 
+export type TodoAvgOrderByAggregateInput = {
+  id?: Prisma.SortOrder
+}
+
 export type TodoMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   task?: Prisma.SortOrder
@@ -293,6 +330,10 @@ export type TodoMinOrderByAggregateInput = {
   task?: Prisma.SortOrder
   done?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+}
+
+export type TodoSumOrderByAggregateInput = {
+  id?: Prisma.SortOrder
 }
 
 export type TodoCreateNestedManyWithoutUserInput = {
@@ -341,14 +382,21 @@ export type BoolFieldUpdateOperationsInput = {
   set?: boolean
 }
 
+export type IntFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
 export type TodoCreateWithoutUserInput = {
-  id?: string
   task: string
   done: boolean
 }
 
 export type TodoUncheckedCreateWithoutUserInput = {
-  id?: string
+  id?: number
   task: string
   done: boolean
 }
@@ -383,32 +431,31 @@ export type TodoScalarWhereInput = {
   AND?: Prisma.TodoScalarWhereInput | Prisma.TodoScalarWhereInput[]
   OR?: Prisma.TodoScalarWhereInput[]
   NOT?: Prisma.TodoScalarWhereInput | Prisma.TodoScalarWhereInput[]
-  id?: Prisma.StringFilter<"Todo"> | string
+  id?: Prisma.IntFilter<"Todo"> | number
   task?: Prisma.StringFilter<"Todo"> | string
   done?: Prisma.BoolFilter<"Todo"> | boolean
   userId?: Prisma.StringFilter<"Todo"> | string
 }
 
 export type TodoCreateManyUserInput = {
-  id?: string
+  id?: number
   task: string
   done: boolean
 }
 
 export type TodoUpdateWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
   task?: Prisma.StringFieldUpdateOperationsInput | string
   done?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type TodoUncheckedUpdateWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   task?: Prisma.StringFieldUpdateOperationsInput | string
   done?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type TodoUncheckedUpdateManyWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   task?: Prisma.StringFieldUpdateOperationsInput | string
   done?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
@@ -463,7 +510,7 @@ export type $TodoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     user: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: string
+    id: number
     task: string
     done: boolean
     userId: string
@@ -891,7 +938,7 @@ export interface Prisma__TodoClient<T, Null = never, ExtArgs extends runtime.Typ
  * Fields of the Todo model
  */
 export interface TodoFieldRefs {
-  readonly id: Prisma.FieldRef<"Todo", 'String'>
+  readonly id: Prisma.FieldRef<"Todo", 'Int'>
   readonly task: Prisma.FieldRef<"Todo", 'String'>
   readonly done: Prisma.FieldRef<"Todo", 'Boolean'>
   readonly userId: Prisma.FieldRef<"Todo", 'String'>

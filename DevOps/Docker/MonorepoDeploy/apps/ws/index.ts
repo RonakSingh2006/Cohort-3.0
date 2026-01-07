@@ -14,7 +14,6 @@ wss.on("connection",async (socket)=>{
   })
 
   socket.on("message",(data)=>{
-    console.log(data);
 
     prisma.todo.create({
       data : {

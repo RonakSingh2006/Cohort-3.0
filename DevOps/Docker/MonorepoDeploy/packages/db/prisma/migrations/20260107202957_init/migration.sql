@@ -9,7 +9,7 @@ CREATE TABLE "User" (
 
 -- CreateTable
 CREATE TABLE "Todo" (
-    "id" TEXT NOT NULL,
+    "id" SERIAL NOT NULL,
     "task" TEXT NOT NULL,
     "done" BOOLEAN NOT NULL,
     "userId" TEXT NOT NULL,
