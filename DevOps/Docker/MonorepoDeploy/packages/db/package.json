@@ -6,8 +6,14 @@
   "devDependencies": {
     "@types/bun": "latest"
   },
+  "scripts": {
+    "build" : "tsc -b"
+  },
   "exports" : {
-    "./client" : "./../lib/prisma.ts"
+    "./client" : {
+      "default" : "./dist/lib/prisma.js",
+      "types" : "./dist/lib/prisma.d.ts"
+    }
   },
   "peerDependencies": {
     "typescript": "^5"
