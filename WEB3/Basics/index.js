@@ -4,16 +4,33 @@ import crypto from 'crypto'
 
 // console.log(hashed);
 
+// let i=0;
+
+// while(true){
+//   const hash = crypto.createHash('sha256').update(i+"").digest('hex');
+
+//   if(hash.startsWith('00000')) break;
+
+//   i++;
+// }
+
+// console.log(i);
+
+// Given string s find nonce 
+// nonce is the val that we have to concat to get the output  reuired
 
 
-let i=0;
 
+let transaction = "Ronak =>  Ram | Rs 1000"
+
+let x = 0;
 
 while(true){
-  const hash = crypto.createHash('sha256').update(i+"").digest('hex');
+  if(crypto.createHash('sha256').update(transaction+x).digest('hex').startsWith('000000')){
+    break;
+  }
 
-  if(hash.startsWith('00000')) break;
-
-  i++;
+  x++;
 }
-console.log(i);
+
+console.log(x);
