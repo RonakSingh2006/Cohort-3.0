@@ -14,14 +14,10 @@ app.get("/",async (req,res)=>{
 
   const {data} = await axios.get("https://dummyjson.com/quotes");
 
-  Client.set("quotes",JSON.stringify(data));
+  await Client.set("quotes",JSON.stringify(data));
+  await Client.expire("quotes",10);
 
   res.send(data);
 })
-
-app.get("/expire",async (req,res)=>{
-  Client.expire("quotes",10);
-  res.send("Done");
-});
 
 app.listen(3000);
