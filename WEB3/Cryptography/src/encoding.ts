@@ -15,7 +15,7 @@ console.log(decodedKey);
 
 
 // decode the Unit8 Array
-let bytesToAsciii = (bytes)=>{
+let bytesToAsciii = (bytes :  Uint8Array<ArrayBuffer>)=>{
   return new TextDecoder().decode(bytes);
 }
 
