@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "run": "tsc -b && ./dist/index.js"
+    "dev": "tsc -b && node ./dist/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
   "dependencies": {
+    "@noble/ed25519": "^3.0.0",
     "bs58": "^6.0.0",
     "typescript": "^5.9.3"
   },
