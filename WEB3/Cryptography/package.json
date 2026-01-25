@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "tsc -b && node ./dist/index.js"
+    "dev": "tsc -b && node ./dist/index.js",
+    "solana": "tsc -b && node ./dist/solana.js"
   },
   "keywords": [],
   "author": "",
@@ -12,6 +13,8 @@
   "type": "module",
   "dependencies": {
     "@noble/ed25519": "^3.0.0",
+    "@solana/keys": "^5.4.0",
+    "@solana/kit": "^5.4.0",
     "bs58": "^6.0.0",
     "typescript": "^5.9.3"
   },
