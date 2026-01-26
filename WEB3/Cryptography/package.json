@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsc -b && node ./dist/index.js",
-    "solana": "tsc -b && node ./dist/solana.js"
+    "solana": "tsc -b && node ./dist/solana.js",
+    "mnemonic" : "tsc -b && node ./dist/mnemonic.js"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +16,7 @@
     "@noble/ed25519": "^3.0.0",
     "@solana/keys": "^5.4.0",
     "@solana/kit": "^5.4.0",
+    "bip39": "^3.1.0",
     "bs58": "^6.0.0",
     "typescript": "^5.9.3"
   },
