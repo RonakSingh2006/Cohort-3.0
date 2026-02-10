@@ -8,10 +8,11 @@ type Course  = {
 type CourseStore = {
   courses : Course[],
   addCourse : (course : Course) => void,
-  removeCourse : (course : Course) => void
+  removeCourse : (course : Course) => void,
+  contains : (id : string) => boolean
 }
 
-const useCourseStore = create<CourseStore>((set)=>({
+const useCourseStore = create<CourseStore>((set,get)=>({
   courses : [],
   addCourse : (course)=>{
     set((state)=>({
@@ -22,6 +23,10 @@ const useCourseStore = create<CourseStore>((set)=>({
     set((state)=>({
       courses : state.courses.filter((e)=> e.id !== course.id)
     }))
+  },
+  contains: (id) => {
+    const state = get();
+    return state.courses.some((c) => c.id === id);
   }
 }))
 
