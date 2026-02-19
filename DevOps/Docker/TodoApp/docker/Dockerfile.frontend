@@ -13,8 +13,13 @@ COPY apps/web ./apps/web
 
 RUN bun install
 RUN bun run db:generate
-RUN DATABASE_URL=${DATABASE_URL}bun run build
+RUN DATABASE_URL=${DATABASE_URL} bun run build
 
 EXPOSE 3000
 
 CMD ["bun","run","start:web"]
+
+
+#  docker build --build-arg DATABASE_URL="postgresql://postgres:Ronak@2006@localhost:5432/postgres" -t todo-app-frontend -f ./docker/Dockerfile.frontend .
+
+# We have to add network here to connecr to db 

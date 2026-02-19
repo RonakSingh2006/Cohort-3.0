@@ -15,3 +15,5 @@ RUN bun run db:generate
 EXPOSE 8080
 
 CMD ["bun","run","start:ws"]
+
+#  docker build -t todo-app-ws -f ./docker/Dockerfile.ws .

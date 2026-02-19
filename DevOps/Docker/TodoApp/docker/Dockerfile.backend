@@ -15,3 +15,5 @@ RUN bun run db:generate
 EXPOSE 3001
 
 CMD ["bun","run","start:backend"]
+
+#  docker build -t todo-app-backend -f ./docker/Dockerfile.backend .
