@@ -27,6 +27,11 @@ jobs:
       
       - name: Deploy to VM
         run: |
-          echo "${{secrets.SSH_PRIVATE_KEY}}" &> ~/ssh_key
-          chmod 700 /home/runner/ssh_key
-          ssh -o StrictHostKeyChecking=no -i ~/ssh_key root@65.2.180.247 -t "docker stop user_backend && docker run --name user_backend -d -p 3001:3001 ronaksingh2006/todo-app-backend:${{github.sha}}"
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa root@65.2.180.247 << 'EOF'
+          docker pull ronaksingh2006/todo-app-backend:${{ github.sha }}
+          docker stop user_backend || true
+          docker rm user_backend || true
+          docker run --name user_backend -d -p 3001:3001 -e DATABASE_URL="${{ secrets.DATABASE_URL }}" ronaksingh2006/todo-app-backend:${{github.sha }}
