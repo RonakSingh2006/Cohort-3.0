@@ -2,6 +2,11 @@ name: Deploy the WebSocket
 on:
   push:
     branches: [main]
+    paths:
+      - 'DevOps/Docker/TodoApp/apps/ws/**'
+      - 'DevOps/Docker/TodoApp/packages/**'     
+      - 'DevOps/Docker/TodoApp/docker/Dockerfile.ws'
+      - 'DevOps/Docker/TodoApp/package.json'
 jobs:
   build:
     runs-on: ubuntu-latest

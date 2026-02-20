@@ -2,6 +2,11 @@ name: Deploy the Frontend
 on:
   push:
     branches: [main]
+    paths:
+      - 'DevOps/Docker/TodoApp/apps/web/**'
+      - 'DevOps/Docker/TodoApp/packages/**'     
+      - 'DevOps/Docker/TodoApp/docker/Dockerfile.frontend'
+      - 'DevOps/Docker/TodoApp/package.json'
 jobs:
   build:
     runs-on: ubuntu-latest

@@ -2,12 +2,17 @@ name: Deploy the Backend
 on:
   push:
     branches: [main]
+    paths:
+      - 'DevOps/Docker/TodoApp/apps/backend/**'
+      - 'DevOps/Docker/TodoApp/packages/**'     
+      - 'DevOps/Docker/TodoApp/docker/Dockerfile.backend'
+      - 'DevOps/Docker/TodoApp/package.json'
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Docker login
         uses: docker/login-action@v2
