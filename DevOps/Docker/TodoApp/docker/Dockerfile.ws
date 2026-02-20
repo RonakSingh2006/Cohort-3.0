@@ -10,6 +10,9 @@ COPY packages ./packages
 COPY apps/ws ./apps/ws
 
 RUN bun install
+
+ARG DATABASE_URL
+ENV DATABASE_URL=$DATABASE_URL
 RUN bun run db:generate
 
 EXPOSE 8080

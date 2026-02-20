@@ -1,0 +1,26 @@
+name: Deploy the WebSocket
+on:
+  push:
+    branches: [main]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v2
+
+      - name: Docker login
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      
+      - name: Build and Push
+        uses: docker/build-push-action@v4
+        with:
+          context: ./DevOps/Docker/TodoApp/
+          file: ./DevOps/Docker/TodoApp/docker/Dockerfile.ws
+          push: true
+          tags: ronaksingh2006/todo-app-ws:${{ github.sha }}
+          build-args: |
+            DATABASE_URL=${{ secrets.DATABASE_URL }}  

@@ -1,0 +1,26 @@
+name: Deploy the Frontend
+on:
+  push:
+    branches: [main]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v2
+
+      - name: Docker login
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      
+      - name: Build and Push
+        uses: docker/build-push-action@v4
+        with:
+          context: ./DevOps/Docker/TodoApp/
+          file: ./DevOps/Docker/TodoApp/docker/Dockerfile.frontend
+          push: true
+          tags: ronaksingh2006/todo-app-frontend:${{ github.sha }}
+          build-args: |
+            DATABASE_URL=${{ secrets.DATABASE_URL }}  
