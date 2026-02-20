@@ -9,4 +9,4 @@ export default async function Home(){
 
 // export const revalidate = 60;  // revalidate after 60s <--- Better
 // or
-// export const dynamic = 'force-dynamic' // To Make site dynamic after build revalidate after 0s
+export const dynamic = 'force-dynamic' // To Make site dynamic after build revalidate after 0s
