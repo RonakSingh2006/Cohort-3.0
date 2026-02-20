@@ -31,7 +31,7 @@ jobs:
           printf "%s\n" "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa root@65.2.180.247 << 'EOF'
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ubuntu@65.2.180.247 << 'EOF'
             docker pull ronaksingh2006/todo-app-backend:${{ github.sha }}
             docker stop user_backend || true
             docker rm user_backend || true
