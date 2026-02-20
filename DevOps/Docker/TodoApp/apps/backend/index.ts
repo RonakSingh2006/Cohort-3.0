@@ -15,7 +15,7 @@ app.post("/addUser",async (req,res)=>{
       password
     }
   })
-  res.send("Done");
+  res.send("Aded User");
 })
 
 app.post("/addTodo",async (req,res)=>{
@@ -29,7 +29,7 @@ app.post("/addTodo",async (req,res)=>{
     }
   })
 
-  res.send("Done");
+  res.send("Addded Todo");
 })
 
 app.get("/users",async (req,res)=>{
