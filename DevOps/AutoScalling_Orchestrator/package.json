@@ -3,6 +3,9 @@
   "module": "index.ts",
   "type": "module",
   "private": true,
+  "scripts": {
+    "dev": "bun run index.ts"
+  },
   "devDependencies": {
     "@types/bun": "^1.3.14"
   },
@@ -10,6 +13,9 @@
     "typescript": "^5"
   },
   "dependencies": {
-    "dotenv": "^17.4.2"
+    "@aws-sdk/client-auto-scaling": "^3.1056.0",
+    "@types/express": "^5.0.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1"
   }
 }
