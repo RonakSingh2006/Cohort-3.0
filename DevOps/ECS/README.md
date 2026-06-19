@@ -45,5 +45,5 @@ aws ecr get-login-password --region ap-south-1 | docker login --username AWS --p
 6. Export/import the generated certificate into **AWS Certificate Manager (ACM)**.
 7. Attach the certificate to the Load Balancer's 443 listener.
 8. Update the Security Group to allow inbound traffic on port **443**.
-
+9. change the record in domain registery to point to loadbalancer dns ip
 Your application will now be accessible securely over HTTPS.
