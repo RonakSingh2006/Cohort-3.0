@@ -1,4 +1,4 @@
-# Nginx
+# Nginx Setup
 
 ## Configuration File Location
 
@@ -29,19 +29,86 @@ http {
 }
 ```
 
-## Common Commands
+## Editing the Configuration
 
 ```bash
-# Test configuration
+sudo nano /etc/nginx/nginx.conf
+```
+
+> If you get permission errors, make sure you're editing the file with `sudo`.
+
+---
+
+## DNS Configuration
+
+To point a subdomain to your EC2 instance, use an **A Record**:
+
+| Type | Host    | Value       |
+| ---- | ------- | ----------- |
+| A    | nodeapp | 13.60.29.26 |
+
+Do **not** use a CNAME record with an IP address.
+
+Incorrect:
+
+```text
+CNAME  nodeapp  13.60.29.26
+```
+
+This causes:
+
+```text
+Please enter a fully qualified domain name.
+```
+
+because a CNAME must point to a domain name, not an IP address.
+
+---
+
+## Common Nginx Commands
+
+### Test Configuration
+
+```bash
 sudo nginx -t
+```
 
-# Reload Nginx
-sudo systemctl reload nginx
+### Reload Configuration (Recommended)
 
-# Restart Nginx
+```bash
+sudo nginx -s reload
+```
+
+Reloads the configuration without stopping Nginx and keeps existing connections alive.
+
+### Restart Nginx
+
+```bash
 sudo systemctl restart nginx
+```
 
-# Check status
+Stops and starts the Nginx service. Existing connections may be interrupted.
+
+### Check Service Status
+
+```bash
 sudo systemctl status nginx
+```
+
+---
+
+## Recommended Workflow
+
+After making changes to `nginx.conf`:
+
+```bash
+sudo nginx -t
+sudo nginx -s reload
+```
+
+Use restart only if reload does not work:
+
+```bash
+sudo systemctl restart nginx
 ```
 
