@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo i\"Error: no test specified\" && exit 1",
-    "start": "NEW_RELIC_APP_NAME=node-app NEW_RELIC_LICENSE_KEY=02bcd0992f6240dc16965076d3c1613969bcNRAL node --experimental-loader=newrelic/esm-loader.mjs index.js"
+    "start": "NEW_RELIC_APPLICATION_LOGGING_FORWARDING_ENABLED=true NEW_RELIC_APP_NAME=node-app NEW_RELIC_LICENSE_KEY=02bcd0992f6240dc16965076d3c1613969bcNRAL node -r newrelic index.js"
   },
   "type": "module",
   "keywords": [],
@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^5.2.1",
-    "newrelic": "^14.1.0"
+    "newrelic": "^14.1.0",
+    "winston": "^3.19.0"
   }
 }
