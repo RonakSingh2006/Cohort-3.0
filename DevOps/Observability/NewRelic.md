@@ -31,7 +31,7 @@ Check that the container is running:
 docker ps
 ```
 
-Verify logs:
+Verify container logs:
 
 ```bash
 docker logs newrelic-infra
@@ -76,6 +76,21 @@ SINCE 30 minutes ago
 
 This query displays CPU utilization over time.
 
+## Using FACET
+
+`FACET` groups query results by a specific attribute, making it useful for comparing metrics across multiple hosts, devices, applications, or regions.
+
+Example:
+
+```sql
+SELECT average(cpuPercent)
+FROM SystemSample
+FACET hostname
+SINCE 30 minutes ago
+```
+
+This displays CPU utilization separately for each host.
+
 ---
 
 # Custom Dashboards
@@ -106,7 +121,7 @@ Alerts can be created directly from dashboard widgets and charts.
    * Warning Threshold
    * Critical Threshold
    * Evaluation Window
-5. Select or create a notification group/channel.
+5. Select or create a notification channel.
 6. Configure the alert message.
 7. Save the alert condition.
 
@@ -139,7 +154,55 @@ When the threshold is breached, New Relic sends notifications to the configured 
 
 ---
 
+# APM (Application Performance Monitoring)
+
+APM helps monitor application-level performance, including response times, throughput, error rates, and transactions.
+
+## Setup for a Node.js Application
+
+1. Navigate to:
+
+```text
+APM & Services
+```
+
+2. Select **Node.js** as the application type.
+3. Follow the installation instructions provided by New Relic.
+4. Install the New Relic Node.js agent:
+
+```bash
+npm install newrelic
+```
+
+5. Configure the application name and license key.
+6. Start the application using the command provided by New Relic.
+
+Example:
+
+```bash
+NEW_RELIC_APP_NAME="node-app" \
+NEW_RELIC_LICENSE_KEY="<YOUR_LICENSE_KEY>" \
+node --experimental-loader=newrelic/esm-loader.mjs index.js
+```
+
+Once the application starts sending data, it will appear under:
+
+```text
+APM & Services → Your Application
+```
+
+You can then monitor:
+
+* Response Time
+* Throughput
+* Error Rate
+* Transactions
+* External Services
+* Database Queries
+
+---
+
 ## Result
 
-New Relic enables infrastructure monitoring, custom dashboards, and automated alerting using NRQL, helping teams proactively monitor system health and respond to issues quickly.
+New Relic enables infrastructure monitoring, application performance monitoring (APM), custom dashboards, and automated alerting using NRQL, helping teams proactively monitor system health and respond to issues quickly.
 
