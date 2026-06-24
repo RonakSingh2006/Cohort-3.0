@@ -58,3 +58,15 @@ Covers:
 * Agent configuration
 * Application monitoring
 * Performance metrics
+
+### 6. Log Forwarding with Winston
+
+File: `README-06-LOG-FORWARDING.md`
+
+Covers:
+
+* Creating a logger using Winston
+* Configuring New Relic log forwarding
+* Enabling `NEW_RELIC_APPLICATION_LOGGING_FORWARDING_ENABLED`
+* Viewing logs in New Relic
+* Log verification and troubleshooting
