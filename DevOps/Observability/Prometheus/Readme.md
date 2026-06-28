@@ -132,3 +132,126 @@ const end = responseTime.startTimer();
 
 end();
 ```
+
+# Prometheus Setup
+
+## 1. Create `prometheus.yml`
+
+```yaml
+global:
+  scrape_interval: 15s
+
+  external_labels:
+    monitor: "codelab-monitor"
+
+scrape_configs:
+  - job_name: "monitor-app"
+
+    static_configs:
+      - targets: ["localhost:3000"]
+```
+
+---
+
+## 2. Run Prometheus
+
+```bash
+docker run -d \
+  --name prometheus \
+  -p 9090:9090 \
+  -v ./prometheus.yml:/etc/prometheus/prometheus.yml \
+  prom/prometheus
+```
+
+At this point, Prometheus will **not** be able to scrape your application if it is running on your host machine (`localhost:3000`).
+
+Inside a Docker container, `localhost` refers to the container itself, **not your computer**.
+
+---
+
+## 3. Containerize the Application
+
+Build the Docker image:
+
+```bash
+docker build -t monitor-app .
+```
+
+---
+
+## 4. Create a Docker Network
+
+Create a shared network so both containers can communicate.
+
+```bash
+docker network create prom-network
+```
+
+---
+
+## 5. Run the Application Container
+
+```bash
+docker run -d \
+  --name node-app \
+  --network prom-network \
+  -p 3000:3000 \
+  monitor-app
+```
+
+---
+
+## 6. Update `prometheus.yml`
+
+Since both containers are on the same Docker network, Prometheus should scrape the application using its **container name** instead of `localhost`.
+
+```yaml
+global:
+  scrape_interval: 15s
+
+  external_labels:
+    monitor: "codelab-monitor"
+
+scrape_configs:
+  - job_name: "monitor-app"
+
+    static_configs:
+      - targets: ["node-app:3000"]
+```
+
+---
+
+## 7. Run Prometheus on the Same Network
+
+```bash
+docker run -d \
+  --name prometheus \
+  --network prom-network \
+  -p 9090:9090 \
+  -v ./prometheus.yml:/etc/prometheus/prometheus.yml \
+  prom/prometheus
+```
+
+Now Prometheus can successfully scrape metrics from the application.
+
+---
+
+## 8. Verify
+
+Open Prometheus in your browser:
+
+```
+http://localhost:9090
+```
+
+Navigate to **Status → Targets** to verify that the `monitor-app` target is **UP**.
+
+---
+
+## Alternative: Docker Compose
+
+Instead of creating the network and running multiple Docker commands manually, you can use **Docker Compose** to start both the Node.js application and Prometheus with a single command.
+
+```bash
+docker compose up -d
+```
