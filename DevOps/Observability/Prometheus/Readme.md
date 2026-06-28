@@ -298,3 +298,26 @@ Go to **Status → Targets** in Prometheus and verify that the `monitor-app` tar
 ```bash
 docker compose down
 ```
+
+
+## Common PromQL Queries
+
+| Query | Description |
+|-------|-------------|
+| `metric_name` | Current value of a metric |
+| `metric_name[5m]` | Metric values from the last 5 minutes |
+| `sum(metric)` | Sum of all matching series |
+| `avg(metric)` | Average value |
+| `min(metric)` | Minimum value |
+| `max(metric)` | Maximum value |
+| `count(metric)` | Count matching series |
+| `rate(metric[5m])` | Per-second average rate (Counters) |
+| `irate(metric[5m])` | Instantaneous rate |
+| `increase(metric[1h])` | Total increase over time |
+| `topk(5, metric)` | Top 5 series by value |
+| `bottomk(5, metric)` | Bottom 5 series by value |
+| `sum by(label)(metric)` | Group and sum by label |
+| `sum without(label)(metric)` | Sum while ignoring a label |
+| `metric{label="value"}` | Filter by label |
+| `metric{label=~"A|B"}` | Regex label filter |
+| `histogram_quantile(0.95, sum(rate(metric_bucket[5m])) by (le))` | 95th percentile latency |
