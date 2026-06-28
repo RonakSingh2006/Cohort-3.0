@@ -250,8 +250,51 @@ Navigate to **Status → Targets** to verify that the `monitor-app` target is **
 
 ## Alternative: Docker Compose
 
-Instead of creating the network and running multiple Docker commands manually, you can use **Docker Compose** to start both the Node.js application and Prometheus with a single command.
+Instead of creating a Docker network and running multiple Docker commands manually, you can use **Docker Compose** to build and start both the Node.js application and Prometheus with a single command.
+
+### Create `docker-compose.yml`
+
+```yaml
+services:
+  node-app:
+    build:
+      context: .
+    ports:
+      - "3000:3000"
+
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    depends_on:
+      - node-app
+```
+
+> **Note:** Docker Compose automatically creates a network and connects both services to it. No manual network creation is required.
+
+The service name (`node-app`) acts as the hostname that Prometheus uses to communicate with your application.
+
+### Start the Services
+
+Build the application image and start all services in detached mode:
 
 ```bash
-docker compose up -d
+docker compose up --build -d
+```
+
+### Verify
+
+Open the following URLs in your browser:
+
+* **Application:** `http://localhost:3000`
+* **Prometheus:** `http://localhost:9090`
+
+Go to **Status → Targets** in Prometheus and verify that the `monitor-app` target is **UP**.
+
+### Stop the Services
+
+```bash
+docker compose down
 ```
